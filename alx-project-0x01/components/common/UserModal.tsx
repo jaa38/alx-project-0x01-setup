@@ -1,5 +1,5 @@
-import { UserData, UserModalProps } from "@/interfaces";
 import React, { useState } from "react";
+import { UserData, UserModalProps, UserProps } from "@/interfaces";
 
 const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
   const [user, setUser] = useState<UserData>({
@@ -25,20 +25,30 @@ const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
     },
   });
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
 
-    setUser((prev) => ({
-      ...prev,
+    setUser((prevUser) => ({
+      ...prevUser,
       [name]: value,
     }));
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onSubmit(user);
+
+    const formattedUser: UserProps = {
+      id: 0,
+      name: user.name,
+      username: user.username,
+      email: user.email,
+      phone: user.phone,
+      website: user.website,
+      address: user.address,
+      company: user.company,
+    };
+
+    onSubmit(formattedUser);
     onClose();
   };
 
@@ -90,10 +100,15 @@ const UserModal: React.FC<UserModalProps> = ({ onClose, onSubmit }) => {
             className="w-full mb-4 px-4 py-2 border rounded-lg"
           />
 
-          <div className="flex justify-between">
-            <button type="button" onClick={onClose}>
+          <div className="flex justify-between items-center">
+            <button
+              type="button"
+              onClick={onClose}
+              className="text-gray-600"
+            >
               Cancel
             </button>
+
             <button
               type="submit"
               className="bg-blue-600 text-white px-4 py-2 rounded-lg"
