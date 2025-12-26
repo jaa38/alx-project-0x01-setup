@@ -1,14 +1,5 @@
-import Header from "@/components/layout/Header";
-
-const Posts: React.FC = () => {
-  return (
-    <div>
-      <Header />
-      <main className="p-6">
-        <h1 className="text-2xl font-bold">Posts Page</h1>
-      </main>
-    </div>
-  )
+const Header: React.FC = () => {
+  return <header>Header</header>
 }
 
-export default Posts;
+export default Header;
