@@ -7,6 +7,7 @@ const Header: React.FC = () => {
         <h3 className='font-bold text-2xl'>
           <Link href='/'>Daily Contents</Link>
         </h3>
+
         <nav>
           <ul className='flex space-x-6'>
             <li className='hover:underline'>
